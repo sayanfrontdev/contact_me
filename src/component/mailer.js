@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
- import emailjs from "emailjs-com"
+import emailjs from "emailjs-com"
 import './mailerStyles.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
