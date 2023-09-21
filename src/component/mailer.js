@@ -11,23 +11,43 @@ function sendEmail(e){
     }).catch(err=> console.log(err));
 }
 const App = () => {
-  const notify = () => toast('🦄 Successfully Connected!', {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "dark",
-    });
+  const [flag , setFlag] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: ''
   });
+  console.log(formData.name);
+  const notify = () =>{
+    const {name, email, phone, message} = formData
+    if(!name || !email || !phone || !message){
+      toast.warn(`   Enter details first`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }else {
+      toast.success(`   Successfully sent!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
+   
 
+  } 
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -99,13 +119,14 @@ const App = () => {
           <textarea
             id="message"
             name="message"
+
             value={formData.message}
             onChange={handleInputChange}
             required
           ></textarea>
         </div>
         <div className="form-group">
-          <input type="submit" value="Submit"  onClick={notify}/>
+          <input type="submit" value="Submit" onClick={notify}/>
         </div>
       </form>
     </div>
