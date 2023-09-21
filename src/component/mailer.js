@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
  import emailjs from "emailjs-com"
 import './mailerStyles.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function sendEmail(e){
     e.preventDefault();
     emailjs.sendForm("service_9f1rywa","template_oxic1a9", e.target,"90Fph-Pdh4zTbSoTY").then(res=>{
@@ -8,6 +11,16 @@ function sendEmail(e){
     }).catch(err=> console.log(err));
 }
 const App = () => {
+  const notify = () => toast('🦄 Successfully Connected!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,6 +58,7 @@ const App = () => {
 
   return (
     <div className="App">
+    <ToastContainer/>
       <h1>Contact Me</h1>
       <form onSubmit={sendEmail}>
         <div className="form-group">
@@ -91,7 +105,7 @@ const App = () => {
           ></textarea>
         </div>
         <div className="form-group">
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit"  onClick={notify}/>
         </div>
       </form>
     </div>
